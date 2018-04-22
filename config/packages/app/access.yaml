@@ -1,0 +1,8 @@
+parameters:
+    access.news: true
+    access.carousel: true
+    access.stream: true
+    access.stream_index: true
+    access.team: true
+    access.partner: true
+    access.contact: true

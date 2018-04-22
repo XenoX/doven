@@ -1,0 +1,10 @@
+parameters:
+    contact.name: null
+    contact.email: null
+    contact.phone: null
+    contact.cellphone: null
+    contact.fax: null
+    contact.address: null
+    contact.zipcode: null
+    contact.city: null
+    contact.address_complement: null

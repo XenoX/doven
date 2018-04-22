@@ -1,0 +1,36 @@
+security:
+    providers:
+        main:
+            entity: { class: App\Entity\User, property: username }
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+
+            pattern: ^/
+            form_login:
+                login_path: app_user_login
+                check_path: app_user_logincheck
+            logout:
+                path: /logout
+                target: /
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 31536000
+                path: /
+                always_remember_me: true
+    encoders:
+        App\Entity\User:
+            algorithm: sha512
+            iterations: 2910
+            encode_as_base64: true
+    role_hierarchy:
+        ROLE_MODO: ROLE_USER
+        ROLE_ADMIN: ROLE_MODO
+        ROLE_KAIO: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_MODO }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

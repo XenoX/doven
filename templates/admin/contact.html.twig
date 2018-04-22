@@ -1,0 +1,17 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block main %}
+    <div class="box box-success">
+    <div class="box-body">
+        {{ form_start(form) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.body) }}
+        {{ form_row(form.recaptcha) }}
+        {{ form_rest(form) }}
+    </div>
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary btn-sm pull-right">Envoyer</button>
+        {{ form_end(form) }}
+    </div>
+    </div>
+{% endblock %}

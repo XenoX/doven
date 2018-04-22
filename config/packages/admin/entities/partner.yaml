@@ -1,0 +1,21 @@
+easy_admin:
+    entities:
+        Partner:
+            class: App\Entity\Partner
+            list:
+                fields:
+                    - id
+                    - enabled
+                    - name
+                    - { property: image, type: image, base_path: '%upload_dir.partner%' }
+                    - website
+                    - twitter
+                    - facebook
+            form:
+                fields:
+                    - name
+                    - website
+                    - twitter
+                    - facebook
+                    - { property: imageFile, type: vich_image }
+                    - description

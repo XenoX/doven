@@ -1,0 +1,23 @@
+imports:
+    - { resource: packages/app/ }
+
+parameters:
+    locale: 'fr'
+    upload_dir.carousel: 'uploads/carousel'
+    upload_dir.news: 'uploads/news'
+    upload_dir.partner: 'uploads/partner'
+    upload_dir.stream: 'uploads/stream'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Repository,Migrations,Tests,Kernel.php}'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']

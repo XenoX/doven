@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        User:
+            class: App\Entity\User
+            list:
+                fields:
+                    - id
+                    - activated
+                    - username
+                    - email
+                    - roles
+            form:
+                fields:
+                    - username
+                    - email
+                    - roles

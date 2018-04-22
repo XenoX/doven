@@ -1,0 +1,16 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        carousel_images:
+            uri_prefix: '%upload_dir.carousel%'
+            upload_destination: '%kernel.project_dir%/public/%upload_dir.carousel%'
+        news_images:
+            uri_prefix: '%upload_dir.news%'
+            upload_destination: '%kernel.project_dir%/public/%upload_dir.news%'
+        partner_images:
+            uri_prefix: '%upload_dir.partner%'
+            upload_destination: '%kernel.project_dir%/public/%upload_dir.partner%'
+        stream_images:
+            uri_prefix: '%upload_dir.stream%'
+            upload_destination: '%kernel.project_dir%/public/%upload_dir.stream%'

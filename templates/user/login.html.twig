@@ -1,0 +1,34 @@
+{% extends theme_template ~ '.html.twig' %}
+
+{% block title %}Connexion {{ parent() }}{% endblock %}
+
+{% block body %}
+    <section class="container-fluid">
+        <form action="{{ path("app_user_logincheck", {}) }}" method="POST" class="col-sm-6 col-sm-offset-3">
+            <h1>Connexion</h1>
+            <div class="form-group">
+                {% if error %}<p class="text-center text-warning">{{ error.message|trans }}</p>{% endif %}
+            </div>
+            <div class="form-group">
+                <label for="username">Nom de compte</label>
+                <input type="text" required="required" class="form-control" value="{{ last_username }}" name="_username" id="username" autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" name="_password" required="required" id="password">
+            </div>
+
+            <div class="checkbox pull-left">
+                <label>
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">Rester connecté</label>
+                </label>
+            </div>
+
+            <br><br>
+
+            <button type="submit" class="pull-right btn btn-success" style="margin-bottom:20px;">Connexion</button>
+        </form>
+    </section>
+{% endblock %}

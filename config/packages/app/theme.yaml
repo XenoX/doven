@@ -1,0 +1,4 @@
+parameters:
+    theme.dir: themes/bzk/
+    theme.template: base
+    theme.index: index_1

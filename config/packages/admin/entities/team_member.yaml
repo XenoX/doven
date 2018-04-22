@@ -1,0 +1,17 @@
+easy_admin:
+    entities:
+        TeamMember:
+            class: App\Entity\TeamMember
+            list:
+                fields:
+                    - id
+                    - enabled
+                    - name
+                    - position
+                    - { property: 'avatar', type: 'image', base_path: 'web/' }
+                    - twitter
+                    - facebook
+                    - team
+                    - sort
+            form:
+                fields: ['name', 'position', 'avatar', 'description', 'twitter', 'facebook', 'team', 'sort']

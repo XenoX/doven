@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        Team:
+            class: App\Entity\Team
+            list:
+                fields:
+                    - id
+                    - enabled
+                    - name
+                    - game
+                    - { property: 'logo', type: 'image', base_path: 'web/' }
+                    - members
+                    - sort
+            form:
+                fields: ['name', 'game', 'logo', 'description', 'members', 'sort']

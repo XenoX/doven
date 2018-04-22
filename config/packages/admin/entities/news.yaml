@@ -1,0 +1,21 @@
+easy_admin:
+    entities:
+        News:
+            class: App\Entity\News
+            list:
+                fields:
+                    - id
+                    - enabled
+                    - title
+                    - subtitle
+                    - { property: image, type: image, base_path: '%upload_dir.news%' }
+                    - description
+                    - { property: createdAt, format: 'j / M / Y' }
+                    - { property: updatedAt, format: 'j / M / Y' }
+            form:
+                fields:
+                    - title
+                    - subtitle
+                    - content
+                    - { property: imageFile, type: vich_image }
+                    - description

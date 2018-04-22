@@ -1,0 +1,20 @@
+easy_admin:
+    entities:
+        Carousel:
+            class: App\Entity\Carousel
+            list:
+                fields:
+                    - id
+                    - enabled
+                    - title
+                    - content
+                    - link
+                    - { property: image, type: image, base_path: '%upload_dir.carousel%' }
+                    - sort
+            form:
+                fields:
+                    - title
+                    - link
+                    - sort
+                    - { property: imageFile, type: vich_image }
+                    - content

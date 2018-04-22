@@ -1,0 +1,20 @@
+{
+  "success_url": "/",
+  "env": {
+    "APP_ENV": "dev",
+    "APP_SECRET": {"generator": "secret"},
+    "DATABASE_URL": "mysql://e6ioos5hr8hetbk3:emmbmlx4movgapgz@zpj83vpaccjer3ah.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/e6yx42lhf62ejgew",
+    "CORS_ALLOW_ORIGIN": "*"
+  },
+  "addons": [
+    "jawsdb"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-php"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "php bin/console doctrine:schema:create && php bin/console doctrine:fixtures:load --no-interaction && php bin/console user:add Doven panda contact@doven.fr --kaio"
+  }
+}

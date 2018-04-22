@@ -1,0 +1,11 @@
+parameters:
+    website.name: Doven
+    website.short_name: Do
+    website.description: Booster d'équipe esport
+    website.email: contact@doven.fr
+    website.social.twitter: null
+    website.social.facebook: null
+    website.social.youtube: null
+    website.social.twitch: null
+    website.social.steam: null
+    website.social.google: null
