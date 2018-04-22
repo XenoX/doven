@@ -15,7 +15,7 @@ class AdminController extends BaseAdminController
 {
     /**
      * @Route("/dashboard")
-     * @Template()
+     * @Template("admin/dashboard.html.twig")
      */
     public function dashboardAction()
     {
