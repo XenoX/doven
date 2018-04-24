@@ -8,8 +8,14 @@ easy_admin:
                     - enabled
                     - name
                     - game
-                    - { property: 'logo', type: 'image', base_path: 'web/' }
+                    - { property: image, type: image, base_path: '%upload_dir.team%' }
                     - members
                     - sort
             form:
-                fields: ['name', 'game', 'logo', 'description', 'members', 'sort']
+                fields:
+                    - name
+                    - game
+                    - { property: imageFile, type: vich_image }
+                    - description
+                    - members
+                    - sort

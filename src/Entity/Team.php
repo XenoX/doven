@@ -4,14 +4,16 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Team
  *
  * @ORM\Table(name="team")
  * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
+ * @Vich\Uploadable
  */
 class Team
 {
@@ -26,42 +28,51 @@ class Team
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
+     * @Assert\NotNull()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
      * @ORM\Column(name="game", type="string", length=255, nullable=true)
      */
     private $game;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="logo", type="string", length=255)
+     * @Assert\Type("string")
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
-    private $logo;
+    private $image;
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @Assert\DateTime()
+     * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $createdAt;
+    private $updatedAt;
+
+    /**
+     * @var int
+     * @Assert\Type("int")
+     * @Assert\NotNull()
+     * @ORM\Column(name="sort", type="integer")
+     */
+    private $sort;
 
     /**
      * @var bool
-     *
+     * @Assert\Type("bool")
      * @ORM\Column(name="enabled", type="boolean")
      */
     private $enabled;
@@ -75,35 +86,24 @@ class Team
     private $members;
 
     /**
-     * @Assert\File(
-     *      maxSize="600k",
-     *      mimeTypes = {"image/png", "image/jpeg"}
-     * )
+     * @Vich\UploadableField(mapping="team_images", fileNameProperty="image")
      */
-    public $file;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="sort", type="integer")
-     */
-    private $sort;
+    public $imageFile;
 
     /**
      * Team constructor.
      */
     public function __construct()
     {
-        $this->logo = 'default.png';
-        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
         $this->enabled = true;
         $this->sort = 0;
     }
 
     /**
-     * {@inheritdoc}
+     * @return string|null
      */
-    public function __toString()
+    public function __toString(): ?string
     {
         return $this->name;
     }
@@ -111,9 +111,9 @@ class Team
     /**
      * Get id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -125,7 +125,7 @@ class Team
      *
      * @return Team
      */
-    public function setName($name)
+    public function setName(string $name): Team
     {
         $this->name = $name;
 
@@ -135,9 +135,9 @@ class Team
     /**
      * Get name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -145,11 +145,11 @@ class Team
     /**
      * Set game
      *
-     * @param string $game
+     * @param string|null $game
      *
      * @return Team
      */
-    public function setGame($game)
+    public function setGame(string $game = null): Team
     {
         $this->game = $game;
 
@@ -159,45 +159,45 @@ class Team
     /**
      * Get game
      *
-     * @return string
+     * @return string|null
      */
-    public function getGame()
+    public function getGame(): ?string
     {
         return $this->game;
     }
 
     /**
-     * Set logo
+     * Set image
      *
-     * @param string $logo
+     * @param string|null $image
      *
      * @return Team
      */
-    public function setLogo($logo)
+    public function setImage(string $image = null): Team
     {
-        $this->logo = $logo;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get logo
+     * Get image
      *
-     * @return string
+     * @return string|null
      */
-    public function getLogo()
+    public function getImage(): ?string
     {
-        return $this->logo;
+        return $this->image;
     }
 
     /**
      * Set description
      *
-     * @param string $description
+     * @param string|null $description
      *
      * @return Team
      */
-    public function setDescription($description)
+    public function setDescription(string $description = null): Team
     {
         $this->description = $description;
 
@@ -207,9 +207,9 @@ class Team
     /**
      * Get description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -217,13 +217,13 @@ class Team
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param \DateTime $updatedAt
      *
      * @return Team
      */
-    public function setCreatedAt($createdAt)
+    public function setUpdatedAt(\DateTime $updatedAt): Team
     {
-        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -233,9 +233,9 @@ class Team
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getUpdatedAt(): \DateTime
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
     /**
@@ -245,7 +245,7 @@ class Team
      *
      * @return Team
      */
-    public function setEnabled($enabled)
+    public function setEnabled(bool $enabled): Team
     {
         $this->enabled = $enabled;
 
@@ -257,7 +257,7 @@ class Team
      *
      * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
@@ -269,7 +269,7 @@ class Team
      *
      * @return Team
      */
-    public function addMember(TeamMember $member)
+    public function addMember(TeamMember $member): Team
     {
         $this->members[] = $member;
 
@@ -289,9 +289,9 @@ class Team
     /**
      * Get members
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getMembers()
+    public function getMembers(): Collection
     {
         return $this->members;
     }
@@ -299,11 +299,11 @@ class Team
     /**
      * Set sort
      *
-     * @param integer $sort
+     * @param int $sort
      *
      * @return Team
      */
-    public function setSort($sort)
+    public function setSort(int $sort): Team
     {
         $this->sort = $sort;
 
@@ -313,47 +313,31 @@ class Team
     /**
      * Get sort
      *
-     * @return integer
+     * @return int
      */
-    public function getSort()
+    public function getSort(): int
     {
         return $this->sort;
     }
 
-    /*
-     ****************
-     * FILE UPLOAD LOGO
-     ****************
+    /**
+     * @param File|null $image
+     *
+     * @return Team
      */
-
-    public function getAbsolutePath()
+    public function setImageFile(File $image = null): Team
     {
-        return null === $this->logo ? null : $this->getUploadRootDir().'/'.$this->logo;
-    }
+        $this->imageFile = $image;
 
-    public function getWebPath()
-    {
-        return null === $this->logo ? null : $this->getUploadDir().'/'.$this->logo;
-    }
-
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        return 'uploads/teams/logo';
-    }
-
-    public function upload()
-    {
-        if (null === $this->file) {
-            return;
+        if ($image) {
+            $this->updatedAt = new \DateTime();
         }
-        $this->logo = sha1(uniqid(mt_rand(), true)).'.'.$this->file->guessExtension();
-        $this->file->move($this->getUploadRootDir(), $this->logo);
 
-        unset($this->file);
+        return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }

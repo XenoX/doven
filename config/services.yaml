@@ -7,6 +7,8 @@ parameters:
     upload_dir.news: 'uploads/news'
     upload_dir.partner: 'uploads/partner'
     upload_dir.stream: 'uploads/stream'
+    upload_dir.team: 'uploads/team'
+    upload_dir.team_member: 'uploads/team/member'
 
 services:
     _defaults:

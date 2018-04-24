@@ -285,6 +285,10 @@ class Carousel
     {
         $this->imageFile = $image;
 
+        if ($image) {
+            $this->updatedAt = new \DateTime();
+        }
+
         return $this;
     }
 
