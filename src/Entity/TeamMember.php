@@ -3,13 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * TeamMember
  *
  * @ORM\Table(name="team_member")
  * @ORM\Entity(repositoryClass="App\Repository\TeamMemberRepository")
+ * @Vich\Uploadable
  */
 class TeamMember
 {
@@ -24,59 +27,67 @@ class TeamMember
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
+     * @Assert\NotNull()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
      * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="avatar", type="string", length=255)
+     * @Assert\Type("string")
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
-    private $avatar;
+    private $image;
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
     private $twitter;
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
      * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
      */
     private $facebook;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @Assert\DateTime()
+     * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $createdAt;
+    private $updatedAt;
 
     /**
      * @var bool
-     *
+     * @Assert\Type("bool")
      * @ORM\Column(name="enabled", type="boolean")
      */
     private $enabled;
+
+    /**
+     * @var int
+     * @Assert\Type("int")
+     * @ORM\Column(name="sort", type="integer")
+     */
+    private $sort;
 
     /**
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="members")
@@ -85,35 +96,24 @@ class TeamMember
     private $team;
 
     /**
-     * @Assert\File(
-     *      maxSize="600k",
-     *      mimeTypes = {"image/png", "image/jpeg"}
-     * )
+     * @Vich\UploadableField(mapping="team_member_images", fileNameProperty="image")
      */
-    public $file;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="sort", type="integer")
-     */
-    private $sort;
+    public $imageFile;
 
     /**
      * TeamMember constructor.
      */
     public function __construct()
     {
-        $this->avatar = 'default.png';
-        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
         $this->enabled = true;
         $this->sort = 0;
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->name;
     }
@@ -121,9 +121,9 @@ class TeamMember
     /**
      * Get id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -135,7 +135,7 @@ class TeamMember
      *
      * @return TeamMember
      */
-    public function setName($name)
+    public function setName(string $name): TeamMember
     {
         $this->name = $name;
 
@@ -145,9 +145,9 @@ class TeamMember
     /**
      * Get name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -155,11 +155,11 @@ class TeamMember
     /**
      * Set position
      *
-     * @param string $position
+     * @param string|null $position
      *
      * @return TeamMember
      */
-    public function setPosition($position)
+    public function setPosition(string $position = null): TeamMember
     {
         $this->position = $position;
 
@@ -169,45 +169,45 @@ class TeamMember
     /**
      * Get position
      *
-     * @return string
+     * @return string|null
      */
-    public function getPosition()
+    public function getPosition(): ?string
     {
         return $this->position;
     }
 
     /**
-     * Set avatar
+     * Set image
      *
-     * @param string $avatar
+     * @param string|null $image
      *
      * @return TeamMember
      */
-    public function setAvatar($avatar)
+    public function setImage(string $image = null): TeamMember
     {
-        $this->avatar = $avatar;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get avatar
+     * Get image
      *
-     * @return string
+     * @return string|null
      */
-    public function getAvatar()
+    public function getImage(): ?string
     {
-        return $this->avatar;
+        return $this->image;
     }
 
     /**
      * Set description
      *
-     * @param string $description
+     * @param string|null $description
      *
      * @return TeamMember
      */
-    public function setDescription($description)
+    public function setDescription(string $description = null): TeamMember
     {
         $this->description = $description;
 
@@ -217,9 +217,9 @@ class TeamMember
     /**
      * Get description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -227,11 +227,11 @@ class TeamMember
     /**
      * Set twitter
      *
-     * @param string $twitter
+     * @param string|null $twitter
      *
      * @return TeamMember
      */
-    public function setTwitter($twitter)
+    public function setTwitter(string $twitter = null): TeamMember
     {
         $this->twitter = $twitter;
 
@@ -241,9 +241,9 @@ class TeamMember
     /**
      * Get twitter
      *
-     * @return string
+     * @return string|null
      */
-    public function getTwitter()
+    public function getTwitter(): ?string
     {
         return $this->twitter;
     }
@@ -251,11 +251,11 @@ class TeamMember
     /**
      * Set facebook
      *
-     * @param string $facebook
+     * @param string $facebook|null
      *
      * @return TeamMember
      */
-    public function setFacebook($facebook)
+    public function setFacebook(string $facebook = null): TeamMember
     {
         $this->facebook = $facebook;
 
@@ -265,9 +265,9 @@ class TeamMember
     /**
      * Get facebook
      *
-     * @return string
+     * @return string|null
      */
-    public function getFacebook()
+    public function getFacebook(): ?string
     {
         return $this->facebook;
     }
@@ -275,13 +275,13 @@ class TeamMember
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param \DateTime $updatedAt
      *
      * @return TeamMember
      */
-    public function setCreatedAt($createdAt)
+    public function setUpdatedAt(\DateTime $updatedAt): TeamMember
     {
-        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -291,9 +291,9 @@ class TeamMember
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getUpdatedAt(): \DateTime
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
     /**
@@ -303,7 +303,7 @@ class TeamMember
      *
      * @return TeamMember
      */
-    public function setEnabled($enabled)
+    public function setEnabled(bool $enabled): TeamMember
     {
         $this->enabled = $enabled;
 
@@ -315,7 +315,7 @@ class TeamMember
      *
      * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
@@ -327,7 +327,7 @@ class TeamMember
      *
      * @return TeamMember
      */
-    public function setTeam(Team $team)
+    public function setTeam(Team $team): TeamMember
     {
         $this->team = $team;
 
@@ -337,9 +337,9 @@ class TeamMember
     /**
      * Get team
      *
-     * @return Team
+     * @return Team|null
      */
-    public function getTeam()
+    public function getTeam(): ?Team
     {
         return $this->team;
     }
@@ -347,11 +347,11 @@ class TeamMember
     /**
      * Set sort
      *
-     * @param integer $sort
+     * @param int $sort
      *
      * @return TeamMember
      */
-    public function setSort($sort)
+    public function setSort(int $sort): TeamMember
     {
         $this->sort = $sort;
 
@@ -361,47 +361,31 @@ class TeamMember
     /**
      * Get sort
      *
-     * @return integer
+     * @return int
      */
-    public function getSort()
+    public function getSort(): int
     {
         return $this->sort;
     }
 
-    /*
-     ****************
-     * FILE UPLOAD AVATAR
-     ****************
+    /**
+     * @param File|null $image
+     *
+     * @return TeamMember
      */
-
-    public function getAbsolutePath()
+    public function setImageFile(File $image = null): TeamMember
     {
-        return null === $this->avatar ? null : $this->getUploadRootDir().'/'.$this->avatar;
-    }
+        $this->imageFile = $image;
 
-    public function getWebPath()
-    {
-        return null === $this->avatar ? null : $this->getUploadDir().'/'.$this->avatar;
-    }
-
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        return 'uploads/teams/avatar';
-    }
-
-    public function upload()
-    {
-        if (null === $this->file) {
-            return;
+        if ($image) {
+            $this->updatedAt = new \DateTime();
         }
-        $this->avatar = sha1(uniqid(mt_rand(), true)).'.'.$this->file->guessExtension();
-        $this->file->move($this->getUploadRootDir(), $this->avatar);
 
-        unset($this->file);
+        return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }

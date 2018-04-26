@@ -8,10 +8,18 @@ easy_admin:
                     - enabled
                     - name
                     - position
-                    - { property: 'avatar', type: 'image', base_path: 'web/' }
+                    - { property: image, type: image, base_path: '%upload_dir.team_member%' }
                     - twitter
                     - facebook
                     - team
                     - sort
             form:
-                fields: ['name', 'position', 'avatar', 'description', 'twitter', 'facebook', 'team', 'sort']
+                fields:
+                    - name
+                    - position
+                    - { property: imageFile, type: vich_image }
+                    - description
+                    - twitter
+                    - facebook
+                    - team
+                    - sort

@@ -1,0 +1,13 @@
+{% extends 'base/base.html.twig' %}
+
+{% block base_title %}
+    {% block title %}{% endblock %} {{ parent() }}
+{% endblock %}
+
+{% block base_header %}
+    {% block header %}{% endblock %}
+{% endblock %}
+
+{% block base_body %}
+    {% block body %}{% endblock %}
+{% endblock %}

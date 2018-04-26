@@ -1,34 +1,43 @@
-{% extends theme_template ~ '.html.twig' %}
+{% extends 'base/base.html.twig' %}
 
-{% block title %}Connexion {{ parent() }}{% endblock %}
+{% block base_title %}Connexion {{ parent() }}{% endblock %}
 
-{% block body %}
-    <section class="container-fluid">
-        <form action="{{ path("app_user_logincheck", {}) }}" method="POST" class="col-sm-6 col-sm-offset-3">
-            <h1>Connexion</h1>
-            <div class="form-group">
-                {% if error %}<p class="text-center text-warning">{{ error.message|trans }}</p>{% endif %}
+{% block base_body %}
+    <div class="container d-flex flex-column">
+        <div class="row my-auto">
+            <div class="col-lg-6 col-md-10 col-sm-12 mx-auto mt-5 py-5">
+                <div class="card">
+                    <div class="card-header bg-transparent px-5">
+                        <h2 class="h4 pt-3 pb-2">Administration</h2>
+                    </div>
+                    <div class="card-block pt-4 px-5 pb-2">
+                        <form role="form" action="{{ path("app_user_logincheck", {}) }}" method="post">
+                            <div class="form-group">
+                                <label class="text-secondary" for="username">Nom de compte</label>
+                                <input type="text" id="username" name="_username" class="form-control form-control-lg" required autofocus>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="text-secondary" for="password">Mot de passe</label>
+                                <input type="password" id="password" name="_password" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="form-check mb-4">
+                                <label class="form-check-label text-secondary">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input mr-2" value="">Resté connecté
+                                </label>
+                            </div>
+                            <button class="btn btn-lg btn-block btn-warning mb-4 rounded-0" type="submit">Connexion</button>
+                            <hr>
+                            <p><small><a class="text-secondary" href="#">J'ai oublié mon mot de passe</a></small></p>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="username">Nom de compte</label>
-                <input type="text" required="required" class="form-control" value="{{ last_username }}" name="_username" id="username" autofocus>
-            </div>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" class="form-control" name="_password" required="required" id="password">
-            </div>
-
-            <div class="checkbox pull-left">
-                <label>
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                    <label for="remember_me">Rester connecté</label>
-                </label>
-            </div>
-
-            <br><br>
-
-            <button type="submit" class="pull-right btn btn-success" style="margin-bottom:20px;">Connexion</button>
-        </form>
-    </section>
+    <style>
+        body {
+            background-image: url({{ asset('img/background-login.jpg') }});
+        }
+    </style>
 {% endblock %}

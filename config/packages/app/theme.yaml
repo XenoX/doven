@@ -1,4 +1,4 @@
 parameters:
-    theme.dir: themes/bzk/
-    theme.template: base
-    theme.index: index_1
+    theme.dir: themes/acme/
+    theme.template: base_acme
+    theme.index: index

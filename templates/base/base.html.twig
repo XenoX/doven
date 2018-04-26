@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ website_description }}">
+    <title>{% block base_title %}- {{ website_name }}{% endblock %}</title>
+    {% block base_head %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    {% block base_css %}{% endblock %}
+</head>
+<body>
+    {% block base_header %}{% endblock %}
+
+    {% block base_body %}{% endblock %}
+
+    {% block base_footer %}{% endblock %}
+
+    <script src="{{ asset('build/manifest.js') }}"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
+    {% block base_js %}{% endblock %}
+</body>
+</html>
