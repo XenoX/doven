@@ -8,6 +8,7 @@ Image file: Fichier image
 Link: Lien
 Main: Principal
 Name: Nom
+Plain password: Mot de passe
 Updated at: Modification
 Sort: Ordre
 Stream name: Nom du stream
@@ -20,3 +21,6 @@ Website: Site
 Partner: Partenaire
 Team: Équipe
 TeamMember: Membre
+
+# Flash
+flash.danger.no_access: Votre rôle ne permet pas de réaliser cette action.

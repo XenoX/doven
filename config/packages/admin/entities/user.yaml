@@ -3,14 +3,22 @@ easy_admin:
         User:
             class: App\Entity\User
             list:
+                dql_filter: "entity.roles NOT LIKE '%%ROLE_KAIO%%'"
                 fields:
                     - id
                     - activated
                     - username
                     - email
                     - roles
-            form:
+            new:
                 fields:
                     - username
                     - email
-                    - roles
+                    - { property: plainPassword, type: text, type_options: { required: true } }
+                    - { property: roles, type: choice, type_options: { multiple: true, choices: { 'ROLE_USER': ROLE_USER, 'ROLE_MODO': ROLE_MODO, 'ROLE_ADMIN': ROLE_ADMIN } } }
+            edit:
+                fields:
+                    - username
+                    - email
+                    - { property: plainPassword, type: text, type_options: { required: false } }
+                    - { property: roles, type: choice, type_options: { multiple: true, choices: { 'ROLE_USER': ROLE_USER, 'ROLE_MODO': ROLE_MODO, 'ROLE_ADMIN': ROLE_ADMIN } } }

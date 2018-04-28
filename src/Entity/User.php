@@ -44,6 +44,11 @@ class User implements AdvancedUserInterface
     private $password;
 
     /**
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="array")
@@ -187,6 +192,26 @@ class User implements AdvancedUserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     *
+     * @return User|null
+     */
+    public function setPlainPassword(string $plainPassword = null): User
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
     }
 
     /**

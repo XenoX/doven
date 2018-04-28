@@ -1,17 +1,17 @@
 easy_admin:
     design:
         menu:
-            - { label: 'Dashboard', icon: 'dashboard', route: 'app_admin_dashboard' }
-            - { label: 'Contenu' }
-            - { entity: 'News', icon: 'newspaper-o', label: 'News' }
-            - { entity: 'Carousel', icon: 'image', label: 'Carousel', params: { sortField: 'sort' } }
-            - { entity: 'Partner', icon: 'handshake-o', label: 'Partenaires' }
-            - { entity: 'Stream', icon: 'video-camera', label: 'Streams' }
-            - label: 'Équipes'
-              icon: 'users'
+            - { label: Dashboard, icon: dashboard, route: app_admin_dashboard }
+            - { label: Contenu }
+            - { entity: News, icon: newspaper-o, label: News }
+            - { entity: Carousel, icon: image, label: Carousel, params: { sortField: sort } }
+            - { entity: Partner, icon: handshake-o, label: Partenaires }
+            - { entity: Stream, icon: video-camera, label: Streams }
+            - label: Équipes
+              icon: users
               children:
-                - { entity: 'Team', label: 'Équipes', params: { sortField: 'sort' } }
-                - { entity: 'TeamMember', label: 'Membres', params: { sortField: 'team' } }
-            - { label: 'Administration' }
-            - { entity: 'User', icon: 'user-circle', label: 'Admins' }
-            - { label: 'Contacter Doven', icon: 'life-ring', url: 'mailto:%doven.email%?subject=[%website.name%] Contact' }
+                - { entity: Team, label: Équipes, params: { sortField: sort } }
+                - { entity: TeamMember, label: Membres, params: { sortField: team } }
+            - { label: Administration }
+            - { entity: User, icon: user-circle, label: Admins }
+            - { label: Contacter Doven, icon: life-ring, url: 'mailto:%doven.email%?subject=[%website.name%] Contact' }
