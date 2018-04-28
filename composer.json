@@ -23,11 +23,11 @@
         "symfony/twig-bundle": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/web-link": "^4.0",
-        "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^4.0",
         "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
+        "symfony/webpack-encore-pack": "*",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "sensiolabs/security-checker": "^4.1",
         "symfony/browser-kit": "^4.0",

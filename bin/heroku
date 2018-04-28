@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 NAME THEME" >&2
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 NAME" >&2
   exit 1
 fi
 
@@ -17,4 +17,3 @@ git push heroku-$1 master
 
 heroku run php bin/console doctrine:schema:update --force -a $1
 heroku run php bin/console user:add Doven panda contact@doven.fr --kaio -a $1
-heroku run yarn run encore production --config assets/themes/$2/webpack.config.js -a $1
