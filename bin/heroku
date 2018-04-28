@@ -10,7 +10,7 @@ heroku create $1 --region eu --addons=jawsdb:kitefin -n
 heroku buildpacks:set heroku/php -a $1
 heroku buildpacks:add heroku/nodejs -a $1
 
-heroku config:set APP_ENV=dev SYMFONY_ENV=dev APP_SECRET=kJqsdmlkqsjHGQUQOLksdjhqsbvqvV -a $1
+heroku config:set APP_ENV=prod SYMFONY_ENV=prod APP_SECRET=kJqsdmlkqsjHGQUQOLksdjhqsbvqvV -a $1
 
 heroku git:remote --remote=heroku-$1 -a $1
 git push heroku-$1 master
