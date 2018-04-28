@@ -1,21 +1,23 @@
 {
   "name": "Doven",
-  "success_url": "/",
+  "success_url": "/admin",
   "env": {
+    "SYMFONY_ENV": "prod",
     "APP_ENV": "prod",
-    "APP_SECRET": {"generator": "secret"},
-    "DATABASE_URL": "mysql://e6ioos5hr8hetbk3:emmbmlx4movgapgz@zpj83vpaccjer3ah.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/e6yx42lhf62ejgew",
-    "CORS_ALLOW_ORIGIN": "*"
+    "APP_SECRET": {"generator": "secret"}
   },
   "addons": [
     "jawsdb"
   ],
   "buildpacks": [
     {
-      "url": "https://github.com/heroku/heroku-buildpack-php"
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
     }
   ],
   "scripts": {
-    "postdeploy": "php bin/console doctrine:schema:update --force && php bin/console user:add Doven panda contact@doven.fr --kaio"
+    "postdeploy": "php bin/console doctrine:schema:update --force && php bin/console user:add Doven panda contact@doven.fr --kaio && yarn run encore production --config assets/themes/acme/webpack.config.js"
   }
 }
