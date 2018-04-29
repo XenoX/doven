@@ -15,15 +15,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class AdminController extends BaseAdminController
 {
     /**
-     * @Route("/dashboard")
-     * @Template("admin/dashboard.html.twig")
-     */
-    public function dashboardAction()
-    {
-        return [];
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function updateEntity($entity)

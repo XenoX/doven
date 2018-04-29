@@ -1,14 +1,14 @@
 easy_admin:
     design:
         menu:
-            - { label: Dashboard, icon: dashboard, route: app_admin_dashboard }
             - { label: Contenu }
-            - { entity: News, icon: newspaper-o, label: News }
-            - { entity: Carousel, icon: image, label: Carousel, params: { sortField: sort } }
-            - { entity: Partner, icon: handshake-o, label: Partenaires }
-            - { entity: Stream, icon: video-camera, label: Streams }
+            - { entity: News, icon: newspaper-o, label: News, access: '%access.news%', default: true }
+            - { entity: Carousel, icon: image, label: Carousel, access: '%access.carousel%', params: { sortField: sort } }
+            - { entity: Partner, icon: handshake-o, label: Partenaires, access: '%access.partner%' }
+            - { entity: Stream, icon: video-camera, label: Streams, access: '%access.stream%' }
             - label: Équipes
               icon: users
+              access: '%access.team%'
               children:
                 - { entity: Team, label: Équipes, params: { sortField: sort } }
                 - { entity: TeamMember, label: Membres, params: { sortField: team } }
