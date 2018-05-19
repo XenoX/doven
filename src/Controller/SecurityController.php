@@ -8,10 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
- * Class UserController
+ * Class SecurityController
+ *
  * @package App\Controller
  */
-class UserController extends Controller
+class SecurityController extends Controller
 {
     /**
      * @Route("/login")

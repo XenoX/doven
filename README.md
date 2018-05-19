@@ -8,8 +8,8 @@ Doven is a homemade CMF to easily generate a esport websites
 ```
 $ git clone git@github.com:XenoX/doven.git
 $ cd doven
-$ yarn install
 $ composer install
+$ yarn install
 $ php bin/console doctrine:database:create
 $ php bin/console doctrine:schema:create
 $ php bin/console doctrine:fixtures:load --no-interaction

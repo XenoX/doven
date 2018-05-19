@@ -359,8 +359,19 @@ class News
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagePath()
+    {
+        return 'uploads/news/'. $this->image;
     }
 }

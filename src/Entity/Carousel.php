@@ -292,8 +292,19 @@ class Carousel
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagePath()
+    {
+        return 'uploads/carousel/'. $this->image;
     }
 }

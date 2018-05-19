@@ -2,3 +2,4 @@ parameters:
     theme.dir: themes/acme/
     theme.template: base_acme
     theme.index: index
+    theme.onepage: true

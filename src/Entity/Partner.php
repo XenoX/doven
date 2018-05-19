@@ -328,4 +328,12 @@ class Partner
     {
         return $this->imageFile;
     }
+
+    /**
+     * @return string
+     */
+    public function getImagePath()
+    {
+        return 'uploads/partner/'. $this->image;
+    }
 }

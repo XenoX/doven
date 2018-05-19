@@ -1,0 +1,98 @@
+{% extends 'base/' ~ theme_template ~ '.html.twig' %}
+
+{% if not theme_onepage %}
+    {% block title %}Index{% endblock %}
+{% endif %}
+
+{% block body %}
+    <main role="main">
+        {% if carousels and access_carousel %}
+            <div id="carousel" class="carousel slide mb-5" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for carousel in carousels %}
+                        <li data-target="#carousel" data-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}"></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for carousel in carousels %}
+                        <div class="carousel-item {{ loop.first ? 'active' }}">
+                            <img class="d-block w-100" src="{{ asset(carousel.imagePath) }}" alt="">
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Précédent</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Suivant</span>
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="container">
+            {% if access_news or access_partner %}
+                <div class="row">
+                    {% if access_news and news is defined and news %}
+                        <div class="{{ access_partner and partners is defined and partners ? 'col-lg-10 col-md-8 col-sm-12 col-12' : 'col-12' }}">
+                            {% for n in news %}
+                                <div class="row">
+                                    <div class="{{ loop.index % 2 == 0 ? 'col-lg-7 order-lg-2' : 'col-lg-8' }}">
+                                        <h2>{{ n.title }}</h2>
+                                        <p class="lead">{{ n.subtitle }}</p>
+                                        <p>{{ n.description }}</p>
+                                        <span class="text-muted">{{ n.user.username }}</span>
+                                    </div>
+                                    <div class="{{ loop.index % 2 == 0 ? 'col-lg-5 order-lg-1' : 'col-lg-4' }}">
+                                        <img src="{{ asset(n.imagePath) }}" class="img-fluid mx-auto" alt="">
+                                    </div>
+                                </div>
+
+                                {% if not loop.last %}
+                                    <hr>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if access_partner and partners is defined and partners %}
+                        <div class="{{ access_news and news is defined and news ? 'col-lg-2 col-md-4' : 'col-12' }}">
+                            {% for partner in partners %}
+                                <div class="col-md-3 mb-3 d-none d-md-block d-lg-block d-xl-block">
+                                    <a href="{{ partner.website }}">
+                                        <img src="{{ asset(partner.imagePath) }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <hr>
+            {% endif %}
+
+            {# TEAM #}
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <h2>Heading</h2>
+                    <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <h2>Heading</h2>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <h2>Heading</h2>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

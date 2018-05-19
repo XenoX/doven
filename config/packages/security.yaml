@@ -11,8 +11,8 @@ security:
 
             pattern: ^/
             form_login:
-                login_path: app_user_login
-                check_path: app_user_logincheck
+                login_path: app_security_login
+                check_path: app_security_logincheck
             logout:
                 path: /logout
                 target: /
