@@ -69,7 +69,7 @@ class NewsFixtures extends Fixture implements DependentFixtureInterface
 
         $object
             ->setTitle($data[0])
-            ->setDescription($data[1])
+            ->setDescription($data[0])
             ->setContent($data[1])
             ->setUpdatedAt(new \DateTime())
             ->setUser($member)
