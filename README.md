@@ -13,7 +13,7 @@ $ yarn install
 $ php bin/console doctrine:database:create
 $ php bin/console doctrine:schema:create
 $ php bin/console doctrine:fixtures:load --no-interaction
-$ yarn run encore dev --config assets/themes/acme/webpack.config.js
+$ yarn run encore production --config assets/themes/acme/webpack.config.js
 $ php bin/console server:start
 
 ```

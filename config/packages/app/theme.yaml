@@ -1,5 +1,5 @@
 parameters:
     theme.dir: themes/acme/
     theme.template: base_acme
-    theme.index: index
+    theme.index: op_index
     theme.onepage: true
