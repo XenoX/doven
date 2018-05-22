@@ -35,7 +35,7 @@
             {% if access_news or access_partner %}
                 <div class="row">
                     {% if access_news and news is defined and news %}
-                        <div class="{{ access_partner and partners is defined and partners ? 'col-lg-10 col-md-8 col-sm-12 col-12' : 'col-12' }}">
+                        <div id="news" class="{{ access_partner and partners is defined and partners ? 'col-lg-10 col-md-8 col-sm-12 col-12' : 'col-12' }}">
                             {% for n in news %}
                                 <div class="row">
                                     <div class="{{ loop.index % 2 == 0 ? 'col-lg-7 order-lg-2' : 'col-lg-8' }}">
@@ -57,7 +57,7 @@
                     {% endif %}
 
                     {% if access_partner and partners is defined and partners %}
-                        <div class="{{ access_news and news is defined and news ? 'col-lg-2 col-md-4' : 'col-12' }}">
+                        <div id="partners" class="{{ access_news and news is defined and news ? 'col-lg-2 col-md-4' : 'col-12' }}">
                             {% for partner in partners %}
                                 <div class="col-md-3 mb-3 d-none d-md-block d-lg-block d-xl-block">
                                     <a href="{{ partner.website }}">

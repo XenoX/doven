@@ -8,17 +8,33 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">{{ website_name }}</a>
+                <a class="navbar-brand" href="{{ theme_onepage ? '#top' : path('app_app_index') }}">{{ website_name }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="#">A propos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">News</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Nos équipes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ theme_onepage ? '#news' : path('app_app_news') }}">
+                                News
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ theme_onepage ? '#partners' : path('app_app_partner') }}">
+                                Partenaires
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ theme_onepage ? '#teams' : path('app_app_team') }}">
+                                Nos équipes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ theme_onepage ? '#contact' : path('app_app_contact') }}">
+                                Contact
+                            </a>
+                        </li>
                         {% if website_social_facebook %}
                             <li class="nav-item"><a class="nav-link" href="https://facebook.com/{{ website_social_facebook }}" target="_blank"><i class="fa fa-facebook-official"></i></a></li>
                         {% endif %}
