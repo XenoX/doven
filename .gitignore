@@ -25,6 +25,5 @@ yarn-error.log
 ###< symfony/web-server-bundle ###
 
 ###> yarn ###
-/public/build/app.*
-/public/build/manifest.json
+/public/build/
 ###< yarn ###
