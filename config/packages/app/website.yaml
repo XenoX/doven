@@ -1,6 +1,6 @@
 parameters:
-    website.name: Doven
-    website.short_name: Do
+    website.name: Acme
+    website.short_name: AM
     website.description: Booster d'équipe esport
     website.email: contact@doven.fr
     website.social.twitter: null
