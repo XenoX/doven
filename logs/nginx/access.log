@@ -1,0 +1,7 @@
+172.26.0.1 - - [23/Apr/2019:13:28:07 +0000] "GET / HTTP/1.1" 404 47 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+172.26.0.1 - - [23/Apr/2019:13:28:07 +0000] "GET /favicon.ico HTTP/1.1" 404 47 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+172.26.0.1 - - [23/Apr/2019:13:29:53 +0000] "GET / HTTP/1.1" 404 47 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+172.26.0.1 - - [23/Apr/2019:13:29:53 +0000] "GET / HTTP/1.1" 404 47 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+172.26.0.1 - - [23/Apr/2019:13:29:54 +0000] "GET / HTTP/1.1" 404 47 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+172.26.0.1 - - [23/Apr/2019:13:54:42 +0000] "GET / HTTP/1.1" 404 47 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+172.26.0.1 - - [23/Apr/2019:14:20:49 +0000] "GET /favicon.ico HTTP/1.1" 404 47 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
